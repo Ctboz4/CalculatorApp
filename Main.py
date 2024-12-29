@@ -25,13 +25,30 @@ class Calculator:
             return "You cannot divide by 0!"
         c = a / b
         return c
+
+    #We need functions to display the signs
+    def AdditionSignDisplay(self):
+        return "+"
+    def SubtractionSignDisplay(self):
+        return "-"
+    def MultiplcationSignDisplay(self):
+        return "*"
+    def DivisionSignDisplay(self):
+        return "/"
+    
+    
+    
         
 
 
 
-calculator = Calculator()
+root = Tk()
+root.title("Calculator")
 
-result = calculator.Multiplcation(6, 10)
+display = Entry(root)
+display.grid(row=0, column=0, columnspan=4)
+display.config(state="readonly")
 
-print(result)
-    
+display.pack()
+
+root.mainloop()

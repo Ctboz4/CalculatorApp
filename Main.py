@@ -72,8 +72,35 @@ class Calculator:
         display.config(state="normal")
         display.delete(0, 'end')
         display.config(state="readonly")
+
+    def equals_Button(self, display):
+
+        secondNumber = int(display.get()) #This gets the number that is in the display
+        self.second_number_used = secondNumber #This stores the number in the display to the self.second_number_used variable used in the Class
         
-    
+        #now we need an if statement to know what operator is being used and to use it correctly
+        if self.Operator == "+":
+            answer = self.Addition(self.first_number_used, self.second_number_used)
+        elif self.Operator == "-":
+            answer = self.Subtraction(self.first_number_used, self.second_number_used)
+        elif self.Operator == "*":
+            answer = self.Multiplcation(self.first_number_used, self.second_number_used)
+        elif self.Operator == "/":
+            answer = self.Division(self.first_number_used, self.second_number_used)
+        else:
+            answer = "Error"
+
+        #This should put the answer into the display
+        display.config(state="normal")
+        display.delete(0, 'end')  # Clear the current display
+        display.insert('end', str(answer))  # Display the result
+        display.config(state="readonly")
+
+        
+        self.first_operand = None
+        self.second_operand = None
+        self.current_operator = None
+        
     
     
 
@@ -107,7 +134,8 @@ button_two.grid(row=1,column=2)
 clear_button = Button(root, text="C", command=lambda: calculator.ClearButton(display))
 clear_button.grid(row=1, column=0)
 
-equals_button = Button(root, text="=")
+equals_button = Button(root, text="=", command=lambda: calculator.equals_Button(display))
+equals_button.grid(row=2, column=3)
 
 addition_button = Button(root, text="+",command=lambda: calculator.addition_button(display))
 addition_button.grid(row=1, column=3)

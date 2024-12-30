@@ -4,6 +4,14 @@ from tkinter import *
 
 #I need to make a calculator class that holds all of the methods needed for a calculator
 class Calculator:
+    #We want to be able to store whatever numbers and operators are being used
+    def __init__(self):
+        self.first_number_used = None
+        self.second_number_used = None
+        self.Operator = None
+
+
+
     #This is the addition function
     def Addition(self, a, b):
         c = a + b
@@ -51,7 +59,24 @@ class Calculator:
         number.config(state="normal")
         number.insert('end', "2")
         number.config(state="readonly")
+
+    #These buttons will be the ones for the functionality
+    def addition_button(self, number):
+        #This should get the value of what in the display
+        current_value = display.get()
+
+        self.first_number_used = int(current_value)
+        self.Operator = "+"
+        
+
+        display.config(state="normal")
+        display.delete(0, 'end')
+        display.config(state="readonly")
+        
     
+    
+    
+
 
 #Call the class
 calculator = Calculator() 
@@ -68,10 +93,9 @@ display = Entry(root)
 display.grid(row=0, column=0, columnspan=4)
 display.config(state="readonly")
 
-#Here I will put all of the Buttons, Make sure that you pass the "display" argument so that it knows where to put the number
+#Here I will put all of the number Buttons, Make sure that you pass the "display" argument so that it knows where to put the number
 #We are going to use the grid system instead of the pack() method
-clear_button = Button(root, text="C", command=lambda: calculator.ClearButton(display))
-clear_button.grid(row=1, column=0)
+
 
 button_one = Button(root, text="1", command=lambda: calculator.one_Button(display))
 button_one.grid(row=1, column=1)
@@ -79,13 +103,20 @@ button_one.grid(row=1, column=1)
 button_two = Button(root, text="2", command=lambda: calculator.two_Button(display))
 button_two.grid(row=1,column=2)
 
+#Here is all the function buttons
+clear_button = Button(root, text="C", command=lambda: calculator.ClearButton(display))
+clear_button.grid(row=1, column=0)
+
+equals_button = Button(root, text="=")
+
+addition_button = Button(root, text="+",command=lambda: calculator.addition_button(display))
+addition_button.grid(row=1, column=3)
 
 
 
 
 
 
-#Pack everything here
 
 
 

@@ -44,6 +44,8 @@ public class App{
 
         //Here is going to be ActionListeners
         one_Button.addActionListener(e -> display.setText(currentTextDisplayed + "1"));
+        two_Button.addActionListener(k -> display.setText(currentTextDisplayed + "2"));
+        //ToDo figure out how to stop it from deleting whats already there
 
 
     }

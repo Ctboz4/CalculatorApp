@@ -3,7 +3,6 @@ import java.awt.*;
 
 public class App{
     public static void main(String[] args){
-        System.out.println("Hello World");
 
         Calculator calculator = new Calculator();
 
@@ -38,6 +37,13 @@ public class App{
         panel.add(four_Button);
         panel.add(five_Button);
 
+
+
+        //I want to get the text and save it for later
+        String currentTextDisplayed = display.getText();
+
+        //Here is going to be ActionListeners
+        one_Button.addActionListener(e -> display.setText(currentTextDisplayed + "1"));
 
 
     }

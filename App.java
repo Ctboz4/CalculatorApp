@@ -20,6 +20,9 @@ public class App{
 
 
         //Button Info
+        JButton plus_button = new JButton("+");
+        JButton minus_button = new JButton("-");
+        JButton equals_button = new JButton("=");
         JButton zero_Button = new JButton("0");
         JButton one_Button = new JButton("1");
         JButton two_Button = new JButton("2");
@@ -30,6 +33,9 @@ public class App{
 
         //This will add the button to the screen
         panel.add(display);
+        panel.add(equals_button);
+        panel.add(plus_button);
+        panel.add(minus_button);
         panel.add(zero_Button);
         panel.add(one_Button);
         panel.add(two_Button);
@@ -39,13 +45,38 @@ public class App{
 
 
 
-        //I want to get the text and save it for later
-        String currentTextDisplayed = display.getText();
+        
+        
 
-        //Here is going to be ActionListeners
-        one_Button.addActionListener(e -> display.setText(currentTextDisplayed + "1"));
-        two_Button.addActionListener(k -> display.setText(currentTextDisplayed + "2"));
-        //ToDo figure out how to stop it from deleting whats already there
+        //Here is going to be ActionListeners for number buttons
+        one_Button.addActionListener(e -> display.setText(display.getText() + "1"));
+        two_Button.addActionListener(e -> display.setText(display.getText() + "2"));
+        three_Button.addActionListener(e -> display.setText(display.getText() + "3"));
+        four_Button.addActionListener(e -> display.setText(display.getText() + "4"));
+        five_Button.addActionListener(e -> display.setText(display.getText() + "5"));
+
+        //Here is going to be ActionListeners for operator buttons
+        plus_button.addActionListener(e -> {
+            calculator.setFirstNumberUsed(Double.parseDouble(display.getText()));
+            
+            calculator.setOperator("+");
+            display.setText("");
+
+        });
+
+
+        equals_button.addActionListener(e -> {
+            calculator.setSecondNumberUsed(Double.parseDouble(display.getText()));
+            double answer = calculator.operation();
+            display.setText(String.valueOf(answer));
+            System.out.println("First " + calculator.getFirstNumberUsed());
+            System.out.println("S " + calculator.getSecondNumberUsed());
+            System.out.println("O " + calculator.getOperator());
+        });
+
+        
+
+        
 
 
     }

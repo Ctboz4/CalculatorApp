@@ -26,10 +26,35 @@ public class Calculator {
     }
 
     public void setSecondNumberUsed(double sNumber){
-        FirstNumberUsed = sNumber;
+        SecondNumberUsed = sNumber;
     }
 
     public void setOperator(String op){
         Operator = op;
+    }
+
+    public double operation(){
+        switch(Operator){
+            
+            case "+":
+                return FirstNumberUsed + SecondNumberUsed;
+            case "-":
+                return FirstNumberUsed - SecondNumberUsed;
+            case "*":
+                return FirstNumberUsed * SecondNumberUsed;
+
+            case "/":
+            //This means that the first number isnt 0!
+                if (FirstNumberUsed != 0){
+                    return FirstNumberUsed / SecondNumberUsed;
+                }
+                else{
+                    System.out.println("Error");
+                    return Double.NaN;
+                }
+            default:
+            System.out.println("Error");
+            return Double.NaN;
+        }
     }
 }
